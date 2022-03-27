@@ -10,7 +10,7 @@ def dollar_course():
     global date, course, course_prev
     months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     date = f'{time.localtime()[2]} {months[time.localtime()[1] - 1]} {time.localtime()[0]} года'
-    data = requests.get('https://www.cbr-xml-daily.ru/daily_json.js').json()
+    data = requests.get('https://www.cbr-xml-daily.ru/daily_json.js').json()# Оригинальное api: https://cdn.cur.su/api/cbr.json
     course = data['Valute']['USD']['Value']
     course_prev = data['Valute']['USD']['Previous']
 
