@@ -1,7 +1,9 @@
 /trash/
+*.json
 run.bat
 openweatherlogin.txt
 test.py
+html.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

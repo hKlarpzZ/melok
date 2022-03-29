@@ -28,7 +28,12 @@ async def on_schedule():
 async def morning_message():
     data = idConfig.readFile('ids.json')
     for id in data['id']:
-        await bot.send_message(id, greeting_message())
+        global_message = greeting_message()
+        await bot.send_message(id, global_message[0])
+        media = types.MediaGroup()
+        media.attach_photo(f'http://openweathermap.org/img/wn/{global_message[1]}@2x.png')
+        await bot.send_media_group(id, media=media)
+        await bot.send_message(id, str(global_message[2]), parse_mode='HTML')
 
 # Команда /start
 @dp.message_handler(commands=['start'])
@@ -38,7 +43,7 @@ async def id_link(message : types.message):
         data = idConfig.readFile('ids.json')
         if id not in data['id']:
             try:
-                await bot.send_message(id, f'Добавляю ваш айди в список!')
+                await bot.send_message(id, f'Добавляю ваш <b>айди</b> в список!', parse_mode='HTML')
                 idConfig.addId('ids.json', id)
                 await bot.send_message(id, f'✅ Я успешно добавил ваш айди!')
                 await message.delete()
@@ -68,7 +73,16 @@ async def oclick(message : types.message):
     if message.text.lower() in nicks:
         await message.reply('Слушаю...')
     elif message.text.lower() in morning:
-        await message.answer(greeting_message())
+        try:
+            id = message.from_user.id
+            global_message = greeting_message()
+            await bot.send_message(id, global_message[0])
+            media = types.MediaGroup()
+            media.attach_photo(f'http://openweathermap.org/img/wn/{global_message[1]}@2x.png')
+            await bot.send_media_group(id, media=media)
+            await bot.send_message(id, str(global_message[2]), parse_mode='HTML')
+        except:
+            await message.reply('⛔️ Сначала напишите мне в лс. Я не могу отправлять сообщения первым!')
 
 # Запуск исполнителя
 def main():
