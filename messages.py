@@ -1,9 +1,9 @@
 from idconfig import idConfig
-import botcreate
 from aiogram import types
 from morning_greeting import greeting_message
+from bot_storage import Storage
 
-bot = botcreate.bot
+bot = Storage.INSTANCE.get_bot()
 
 # Функция отправки сообщения утром
 async def morning_message():

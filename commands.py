@@ -1,11 +1,11 @@
-import botcreate
 from aiogram import types
 from idconfig import idConfig
 from words import *
 from morning_greeting import greeting_message
+import bot_storage
 
-bot = botcreate.bot
-dp = botcreate.dp
+bot = bot_storage.Storage.INSTANCE.get_bot()
+dp = bot_storage.Storage.INSTANCE.get_dp()
 
 # Команда /start
 @dp.message_handler(commands=['start'])
