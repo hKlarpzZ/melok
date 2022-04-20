@@ -1,5 +1,56 @@
-class Food:
+from fileinput import filename
+import json
 
+class FoodStorage:
+    filename = 'food_storage.json'
+    def readFile():
+        global filename
+        try:
+            with open(filename, 'r') as file:
+                data = json.load(file)
+                return data
+        except:
+            with open(filename, 'at+') as file:
+                data = {}
+                data['counter'] = 0
+                data['lots'] = []
+                json.dump(data, file)
+                return data
+
+    @classmethod
+    def addFood(cls, Food_obj):
+        global filename
+        data = cls.readFile()
+        with open(filename, 'rt+') as file:
+            data['counter'] += 1
+            id = data['counter']
+            to_json_food_obj = []
+            to_json_food_obj.append(id)
+            to_json_food_obj.append(Food_obj.get_name())
+            to_json_food_obj.append(Food_obj.get_ingredients())
+            to_json_food_obj.append(Food_obj.get_preparation())
+            to_json_food_obj.append(Food_obj.get_portions())
+            to_json_food_obj.append(Food_obj.get_img())
+            to_json_food_obj.append(Food_obj.get_type())
+            data['lots'].append(to_json_food_obj)
+            # if id not in data['id']:
+            #     data['id'].append(id)
+            #     json.dump(data, file)
+            #     print(f'{id} добавлен в базу данных')
+    
+    # @classmethod
+    # def removeId(cls, filename, id):
+    #     data = cls.readFile(filename)
+    #     ids = data['id']
+    #     if id in ids:
+    #         del ids[ids.index(id)]
+    #     data['id'] = ids
+    #     with open(filename, 'w') as file:
+    #         json.dump(data, file)
+    #         print(f'{id} удалён из базы данных')
+
+
+class Food_obj:
     def __init__(self, name, ingredients, preparation, portions, img) -> None:
         if name is None:
             raise KeyError
