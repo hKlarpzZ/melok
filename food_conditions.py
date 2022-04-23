@@ -1,10 +1,8 @@
-from fileinput import filename
 import json
 
 class FoodStorage:
-    filename = 'food_storage.json'
     def readFile():
-        global filename
+        filename = 'food_storage.json'
         try:
             with open(filename, 'r') as file:
                 data = json.load(file)
@@ -19,7 +17,7 @@ class FoodStorage:
 
     @classmethod
     def addFood(cls, Food_obj):
-        global filename
+        filename = 'food_storage.json'
         data = cls.readFile()
         with open(filename, 'rt+') as file:
             data['counter'] += 1
@@ -33,6 +31,7 @@ class FoodStorage:
             to_json_food_obj.append(Food_obj.get_img())
             to_json_food_obj.append(Food_obj.get_type())
             data['lots'].append(to_json_food_obj)
+            json.dump(data, file)
             # if id not in data['id']:
             #     data['id'].append(id)
             #     json.dump(data, file)
@@ -51,17 +50,23 @@ class FoodStorage:
 
 
 class Food_obj:
+    # Изначальные значения(Дефолтные)
+    name = 'noname'
+    ingredients = []
+    preparation = []
+    portions = 1
+    img = ''
+
+    # Создание(объявление) объекта класса
     def __init__(self, name, ingredients, preparation, portions, img) -> None:
-        if name is None:
+        if name == 'noname':
             raise KeyError
-        if ingredients is None:
-            raise KeyError
-        if preparation is None:
-            raise KeyError
-        if portions is None:
-            self.portions = 1
-        if img is None:
-            self.img = ''
         self.name = name
+        if ingredients == []:
+            raise KeyError
         self.ingredients = ingredients
+        if preparation == []:
+            raise KeyError
         self.preparation = preparation
+        self.portions = portions
+        self.img = img
