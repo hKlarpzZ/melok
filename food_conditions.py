@@ -70,3 +70,18 @@ class Food_obj:
         self.preparation = preparation
         self.portions = portions
         self.img = img
+
+    def get_name(self):
+        return self.name
+
+    def get_ingredients(self):
+        return self.ingredients
+
+    def get_preparation(self):
+        return self.preparation
+
+    def get_portions(self):
+        return self.portions
+
+    def get_img(self):
+        return self.img
