@@ -58,15 +58,18 @@ class Food_obj:
     img = ''
 
     # Создание(объявление) объекта класса
-    def __init__(self, name, ingredients, preparation, portions, img) -> None:
+    def __init__(self, name=name, ingredients=ingredients, preparation=preparation, portions=portions, img=img) -> None:
         if name == 'noname':
-            raise KeyError
+            print('name is empty')
+            # raise KeyError
         self.name = name
         if ingredients == []:
-            raise KeyError
+            print('ingredients are empty')
+            # raise KeyError
         self.ingredients = ingredients
         if preparation == []:
-            raise KeyError
+            print('preparation is empty')
+            # raise KeyError
         self.preparation = preparation
         self.portions = portions
         self.img = img
