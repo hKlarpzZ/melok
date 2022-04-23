@@ -49,7 +49,7 @@ class FoodStorage:
     #         print(f'{id} удалён из базы данных')
 
 
-class Food_obj:
+class Food:
     # Изначальные значения(Дефолтные)
     name = 'noname'
     ingredients = []
@@ -75,6 +75,8 @@ class Food_obj:
         self.preparation = preparation
         self.portions = portions
         self.img = img
+
+    # Функции возврата значений
 
     def get_name(self):
         return self.name
