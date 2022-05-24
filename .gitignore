@@ -1,11 +1,15 @@
 /trash/
 /venv/
+/model/
+/model_small/
 *.json
 run.bat
 openweatherlogin.txt
 test.py
 html.txt
 chromedriver.exe
+latest_silero_models.yml
+discord_token.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

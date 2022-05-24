@@ -26,7 +26,7 @@ def dollar_course():
 def greeting_message():
     global course_message, icon_id, weather_message
     dollar_course()
-    current_weather()
+    # current_weather()
     return course_message + '\n\nПогода:', icon_id, weather_message
 
 def current_weather():
@@ -42,5 +42,5 @@ def current_weather():
     weather_message = f'<b>{main_translation.text}</b>\n{desc_translation.text}\nТемпература: <b>{round(data["main"]["temp"] - 273.15, 1)}</b>, но ощущается как <b>{round(data["main"]["feels_like"] - 273.15, 1)}</b>\n\nВлажность: {data["main"]["humidity"]} %,\nДавление: {data["main"]["pressure"]} гПа,\nСкорость ветра: {data["wind"]["speed"]} м/с,\nВидимость: {data["visibility"]/1000} км.'
     return icon_id, weather_message
 
-current_weather()
+# current_weather()
     # icon: http://openweathermap.org/img/wn/{icon_id}@2x.png

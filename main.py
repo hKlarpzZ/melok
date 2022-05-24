@@ -13,6 +13,7 @@ bot_storage.Storage.init(bot, dp)
 
 import scheduler
 import commands
+import recognition
 
 def main():
     # Запуск исполнителя
